@@ -15,7 +15,7 @@ const registerUser = asyncHandler(async (req, res) => {
 
   if (userExists) {
     res.status(400);
-    throw new Error("user already");
+    throw new Error("user already exists");
   }
 
   //User.create is also an mongo db command that is used to insert or store the data the structure defined below
@@ -50,6 +50,7 @@ const authUser = asyncHandler(async (req, res) => {
       _id: user._id,
       name: user.name,
       email: user.email,
+      isAdmin: user.isAdmin,
       pic: user.pic,
       token: generateToken(user._id),
     });
